@@ -17,8 +17,8 @@ public class PersonStatusComparator implements Comparator<Person> {
 
     @Override
     public int compare(Person o1, Person o2) {
-        int length1 = o1.surname.split(" ").length > importanteCount ? importanteCount : o1.surname.split(" ").length;
-        int length2 = o2.surname.split(" ").length > importanteCount ? importanteCount : o2.surname.split(" ").length;
+        int length1 = Math.min(o1.surname.split(" ").length, importanteCount);
+        int length2 = Math.min(o2.surname.split(" ").length, importanteCount);
         if (length1 > length2) {
             return 1;
         } else if (length1 < length2 ) {
