@@ -3,11 +3,22 @@ package src;
 import java.util.Comparator;
 
 public class PersonStatusComparator implements Comparator<Person> {
+
+    private int importanteCount = Integer.MAX_VALUE;
+
+    public PersonStatusComparator() {
+    }
+
+    public PersonStatusComparator(int importanteCount) {
+        if (importanteCount > 0 ) {
+            this.importanteCount = importanteCount;
+        }
+    }
+
     @Override
     public int compare(Person o1, Person o2) {
-        //return Integer.compare(o1.surname.split(" ").length, o2.surname.split(" ").length);
-        int length1 = o1.surname.split(" ").length;
-        int length2 = o2.surname.split(" ").length;
+        int length1 = o1.surname.split(" ").length > importanteCount ? importanteCount : o1.surname.split(" ").length;
+        int length2 = o2.surname.split(" ").length > importanteCount ? importanteCount : o2.surname.split(" ").length;
         if (length1 > length2) {
             return 1;
         } else if (length1 < length2 ) {
@@ -16,4 +27,5 @@ public class PersonStatusComparator implements Comparator<Person> {
             return Integer.compare(o1.age, o2.age);
         }
     }
+
 }
